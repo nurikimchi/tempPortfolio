@@ -245,44 +245,59 @@ function Resume() {
 }
 
 function Photos() {
-  let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
-
   return (
     <div className="mt-16 sm:mt-20">
-      <div className={clsx(
-        'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
-        // rotations[imageIndex % rotations.length]
-      )}>
-        <img
-          src={image1.src}
-          alt="Golden Bridge in Sacramento, California."
-          sizes="(min-width: 640px) 18rem, 11rem"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <img
-          src={image2.src}
-          alt="An open Bible."
-          sizes="(min-width: 640px) 18rem, 11rem"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <img
-          src={image3.src}
-          alt="Gamcheon Culture Village in Busan, South Korea."
-          sizes="(min-width: 640px) 18rem, 11rem"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <img
-          src={image4.src}
-          alt="A stack of paperback books."
-          sizes="(min-width: 640px) 18rem, 11rem"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <img
-          src={image5.src}
-          alt="A greenside bunker on a golf course."
-          sizes="(min-width: 640px) 18rem, 11rem"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+      <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8 flex-row space-evenly space-x-4">
+        <div className={clsx(
+          'rotate-2 relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
+        )}>
+          <img
+            src={image1.src}
+            alt="Golden Bridge in Sacramento, California."
+            sizes="(min-width: 640px) 18rem, 11rem"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+       </div>
+       <div className={clsx(
+          '-rotate-2 relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
+        )}>
+          <img
+            src={image2.src}
+            alt="An open Bible."
+            sizes="(min-width: 640px) 18rem, 11rem"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        </div>
+        <div className={clsx(
+          'rotate-2 relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
+        )}>
+          <img
+            src={image3.src}
+            alt="Gamcheon Culture Village in Busan, South Korea."
+            sizes="(min-width: 640px) 18rem, 11rem"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        </div>
+        <div className={clsx(
+          '-rotate-2 relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
+        )}>
+          <img
+            src={image4.src}
+            alt="A stack of paperback books."
+            sizes="(min-width: 640px) 18rem, 11rem"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        </div>
+        <div className={clsx(
+          'rotate-2 relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
+        )}>
+          <img
+            src={image5.src}
+            alt="A greenside bunker on a golf course."
+            sizes="(min-width: 640px) 18rem, 11rem"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        </div>
       </div>
     </div>
   )
