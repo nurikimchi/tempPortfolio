@@ -249,36 +249,41 @@ function Photos() {
 
   return (
     <div className="mt-16 sm:mt-20">
-      {/* <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-        {[image1, image2, image3, image4, image5].map((image, imageIndex) => (
-          <div
-            key={image.src}
-            className={clsx(
-              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
-              rotations[imageIndex % rotations.length]
-            )}
-          >
-            <img
-              src={image.src}
-              alt=""
-              sizes="(min-width: 640px) 18rem, 11rem"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </div>
-        ))}
-      </div> */}
       <div className={clsx(
-              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
-              // rotations[imageIndex % rotations.length]
-            )}>
-
-              <img
-                src={image1.src}
-                alt=""
-                sizes="(min-width: 640px) 18rem, 11rem"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            </div>
+        'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
+        // rotations[imageIndex % rotations.length]
+      )}>
+        <img
+          src={image1.src}
+          alt="Golden Bridge in Sacramento, California."
+          sizes="(min-width: 640px) 18rem, 11rem"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <img
+          src={image2.src}
+          alt="An open Bible."
+          sizes="(min-width: 640px) 18rem, 11rem"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <img
+          src={image3.src}
+          alt="Gamcheon Culture Village in Busan, South Korea."
+          sizes="(min-width: 640px) 18rem, 11rem"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <img
+          src={image4.src}
+          alt="A stack of paperback books."
+          sizes="(min-width: 640px) 18rem, 11rem"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <img
+          src={image5.src}
+          alt="A greenside bunker on a golf course."
+          sizes="(min-width: 640px) 18rem, 11rem"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      </div>
     </div>
   )
 }
