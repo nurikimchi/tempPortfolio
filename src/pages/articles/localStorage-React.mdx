@@ -1,0 +1,105 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const meta = {
+  author: 'Nuri Kim',
+  date: '2022-07-06',
+  title:
+    'Save and Retrieve Data After A Closed Window In React With localStorage',
+  //   description:
+  //     'When you’re building a website for a company as ambitious as Planetaria, you need to make an impression. I wanted people to visit our website and see animations that looked more realistic than reality itself.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+## What is localStorage?
+
+localStorage is a property of JavaScript's window interface
+(an object that represents a browser window with DOM elements).
+It allows JavaScript websites to save and retrieve key/value pairs
+after a browser window is closed. It has several methods including
+setItem(), getItem(), and removeItem() that manage key/value pairs
+made through localStorage. These pairs can only be strings. Other data types
+can be managed by localStorage if converted to strings through JSON methods
+(more on that later).
+
+### setItem()
+
+This method creates a new key/value pair that can later be accessed by getItem() and removeItem() after the browser window is closed.
+
+```js
+// makes a key: 'myNewKey' with its value 'myNewValue'
+localStorage.keyItem('myNewKey', 'myNewValue')
+```
+
+### getItem()
+
+This method accesses the value set by setItem() through one parameter, a key value.
+
+```js
+// @returns {string} 'myNewValue'
+localStorage.getItem('myNewKey')
+```
+
+### removeItem()
+
+Like getItem(), removeItem() only needs one parameter, the key value, to remove the key and its value.
+
+```js
+// removes 'myNewKey' and its value 'myNewValue'
+localStorage.removeItem('myNewKey')
+```
+
+## Use Other Data Types in localStorage Through JSON Methods
+
+### JSON.stringify()
+
+Converts any data type into a string. Since localStorage only accepts parameters as strings so you must convert any other data type to a string before passing it as a localStorage parameter.
+
+```js
+const myNewObjectValue = {
+    id: 1,
+    name 'Nuri Kim',
+    age: 14
+}
+
+// sets the string version of 'myNewObjectValue' to the key string value 'myNewObjectValue' to localStorage
+localStorage.setItem('myNewObjectKey', JSON.stringify(myNewObjectValue))
+```
+
+### JSON.parse()
+
+Converts a stringified value to its original data type. When string data is saved into localStorage, its value can be retrieved and returned to its original data type through JSON.parse()
+
+```js
+// @returns {object} 'myNewObjectValue' from a string into its original type
+JSON.parse(localStorage.getItem('nevObjectKey'))
+```
+
+## localStorage and React
+
+### useEffect()
+
+useEffect is a hook that handles events outside of React including API/database calls, subscriptions (e.g. WebSocket), and <b>localStorage</b>. Combined with a dependency array, you can add a key/value pair into localStorage after a certain value within that array has changed. The array is the second parameter in useEffect(). If an array contains a variable, useEffect() will run everytime that variable has changed. If the second parameter/array is empty, useEffect() will run once after its parent component has finished loading.
+Example: In our checklist app, we want to implement a feature where a user's added items will not disappear after he/she refreshes or closes the browser window. The following code successfully implements this feature to our App component if added to a working codebase:
+
+```js
+export default App() {
+    const [checklistItem, setChecklistItems] = React.useState(
+        // if there is no 'checklistItem' in localStorage, 'checklistItem' of useState is an empty array
+        JSON.parse(localStorage.getItem('checklistItem')) || []
+    )
+
+    // after a checklistItem is added or changed (see dependency array), set the variable 'checklistItem' as a key with its value being the stringified 'checklistItem'
+    React.useEffect(() => {
+        localStorage.setItem('checklistItem', JSON.stringify(checklistItem))}), [checklistItem]
+}
+```
+
+## Special Thanks
+
+<ul>
+  <li>
+    Scrimba for their [awesome React course
+    ](https://scrimba.com/learn/learnreact)
+  </li>
+</ul>

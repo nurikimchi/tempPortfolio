@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>Spencer Sharp</title>
+        <link>undefined</link>
+        <description>Your blog description</description>
+        <lastBuildDate>Sat, 15 Jul 2023 02:54:05 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <image>
+            <title>Spencer Sharp</title>
+            <url>undefined/favicon.ico</url>
+            <link>undefined</link>
+        </image>
+        <copyright>All rights reserved 2023</copyright>
+        <item>
+            <title><![CDATA[Decrease Loading Time in React with Lazy State Initialization]]></title>
+            <link>undefined/articles/lazyState-React</link>
+            <guid>undefined/articles/lazyState-React</guid>
+            <pubDate>Thu, 07 Jul 2022 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h2>The Issue</h2>
+<p>In React, every time state changes, its parent function component is rerun. This can greatly increase loading times--especially if large memory consuming processes are being rerun (e.g. localStorage).</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword module">export</span> <span class="token keyword module">default</span> <span class="token function"><span class="token maybe-class-name">App</span></span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// if &#x27;checklistItem&#x27; state is changed, the parent functional component: &#x27;App&#x27; will rerun--including heavy memory processes such as &#x27;localStorage&#x27;</span>
+    <span class="token keyword">const</span> <span class="token punctuation">[</span>checklistItem<span class="token punctuation">,</span> setChecklistItems<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token maybe-class-name">React</span><span class="token punctuation">.</span><span class="token method function property-access">useState</span><span class="token punctuation">(</span>
+        <span class="token known-class-name class-name">JSON</span><span class="token punctuation">.</span><span class="token method function property-access">parse</span><span class="token punctuation">(</span><span class="token dom variable">localStorage</span><span class="token punctuation">.</span><span class="token method function property-access">getItem</span><span class="token punctuation">(</span><span class="token string">&#x27;checklistItem&#x27;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2>The Fix</h2>
+<p>The fix is simple: make state a function. By doing so, we successfully make state run once instead on every state change and initialize state to be lazy--hence lazy state initialization.</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword module">export</span> <span class="token keyword module">default</span> <span class="token function"><span class="token maybe-class-name">App</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// By making &#x27;checklistItem&#x27; state an arrow function, we successfully implement lazy state initialization!</span>
+    <span class="token keyword">const</span> <span class="token punctuation">[</span>checklistItem<span class="token punctuation">,</span> setChecklistItems<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token maybe-class-name">React</span><span class="token punctuation">.</span><span class="token method function property-access">useState</span><span class="token punctuation">(</span>
+        <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token known-class-name class-name">JSON</span><span class="token punctuation">.</span><span class="token method function property-access">parse</span><span class="token punctuation">(</span><span class="token dom variable">localStorage</span><span class="token punctuation">.</span><span class="token method function property-access">getItem</span><span class="token punctuation">(</span><span class="token string">&#x27;checklistItem&#x27;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>]]></content:encoded>
+            <author>spencer@planetaria.tech (Spencer Sharp)</author>
+        </item>
+        <item>
+            <title><![CDATA[Save and Retrieve Data After A Closed Window In React With localStorage]]></title>
+            <link>undefined/articles/localStorage-React</link>
+            <guid>undefined/articles/localStorage-React</guid>
+            <pubDate>Wed, 06 Jul 2022 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h2>What is localStorage?</h2>
+<p>localStorage is a property of JavaScript&#x27;s window interface
+(an object that represents a browser window with DOM elements).
+It allows JavaScript websites to save and retrieve key/value pairs
+after a browser window is closed. It has several methods including
+setItem(), getItem(), and removeItem() that manage key/value pairs
+made through localStorage. These pairs can only be strings. Other data types
+can be managed by localStorage if converted to strings through JSON methods
+(more on that later).</p>
+<h3>setItem()</h3>
+<p>This method creates a new key/value pair that can later be accessed by getItem() and removeItem() after the browser window is closed.</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// makes a key: &#x27;myNewKey&#x27; with its value &#x27;myNewValue&#x27;</span>
+<span class="token dom variable">localStorage</span><span class="token punctuation">.</span><span class="token method function property-access">keyItem</span><span class="token punctuation">(</span><span class="token string">&#x27;myNewKey&#x27;</span><span class="token punctuation">,</span> <span class="token string">&#x27;myNewValue&#x27;</span><span class="token punctuation">)</span>
+</code></pre>
+<h3>getItem()</h3>
+<p>This method accesses the value set by setItem() through one parameter, a key value.</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// @returns {string} &#x27;myNewValue&#x27;</span>
+<span class="token dom variable">localStorage</span><span class="token punctuation">.</span><span class="token method function property-access">getItem</span><span class="token punctuation">(</span><span class="token string">&#x27;myNewKey&#x27;</span><span class="token punctuation">)</span>
+</code></pre>
+<h3>removeItem()</h3>
+<p>Like getItem(), removeItem() only needs one parameter, the key value, to remove the key and its value.</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// removes &#x27;myNewKey&#x27; and its value &#x27;myNewValue&#x27;</span>
+<span class="token dom variable">localStorage</span><span class="token punctuation">.</span><span class="token method function property-access">removeItem</span><span class="token punctuation">(</span><span class="token string">&#x27;myNewKey&#x27;</span><span class="token punctuation">)</span>
+</code></pre>
+<h2>Use Other Data Types in localStorage Through JSON Methods</h2>
+<h3>JSON.stringify()</h3>
+<p>Converts any data type into a string. Since localStorage only accepts parameters as strings so you must convert any other data type to a string before passing it as a localStorage parameter.</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> myNewObjectValue <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    name <span class="token string">&#x27;Nuri Kim&#x27;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">age</span><span class="token operator">:</span> <span class="token number">14</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// sets the string version of &#x27;myNewObjectValue&#x27; to the key string value &#x27;myNewObjectValue&#x27; to localStorage</span>
+<span class="token dom variable">localStorage</span><span class="token punctuation">.</span><span class="token method function property-access">setItem</span><span class="token punctuation">(</span><span class="token string">&#x27;myNewObjectKey&#x27;</span><span class="token punctuation">,</span> <span class="token known-class-name class-name">JSON</span><span class="token punctuation">.</span><span class="token method function property-access">stringify</span><span class="token punctuation">(</span>myNewObjectValue<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<h3>JSON.parse()</h3>
+<p>Converts a stringified value to its original data type. When string data is saved into localStorage, its value can be retrieved and returned to its original data type through JSON.parse()</p>
+<pre class="language-js"><code class="language-js"><span class="token comment">// @returns {object} &#x27;myNewObjectValue&#x27; from a string into its original type</span>
+<span class="token known-class-name class-name">JSON</span><span class="token punctuation">.</span><span class="token method function property-access">parse</span><span class="token punctuation">(</span><span class="token dom variable">localStorage</span><span class="token punctuation">.</span><span class="token method function property-access">getItem</span><span class="token punctuation">(</span><span class="token string">&#x27;nevObjectKey&#x27;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+<h2>localStorage and React</h2>
+<h3>useEffect()</h3>
+<p>useEffect is a hook that handles events outside of React including API/database calls, subscriptions (e.g. WebSocket), and <b>localStorage</b>. Combined with a dependency array, you can add a key/value pair into localStorage after a certain value within that array has changed. The array is the second parameter in useEffect(). If an array contains a variable, useEffect() will run everytime that variable has changed. If the second parameter/array is empty, useEffect() will run once after its parent component has finished loading.
+Example: In our checklist app, we want to implement a feature where a user&#x27;s added items will not disappear after he/she refreshes or closes the browser window. The following code successfully implements this feature to our App component if added to a working codebase:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword module">export</span> <span class="token keyword module">default</span> <span class="token function"><span class="token maybe-class-name">App</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">[</span>checklistItem<span class="token punctuation">,</span> setChecklistItems<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token maybe-class-name">React</span><span class="token punctuation">.</span><span class="token method function property-access">useState</span><span class="token punctuation">(</span>
+        <span class="token comment">// if there is no &#x27;checklistItem&#x27; in localStorage, &#x27;checklistItem&#x27; of useState is an empty array</span>
+        <span class="token known-class-name class-name">JSON</span><span class="token punctuation">.</span><span class="token method function property-access">parse</span><span class="token punctuation">(</span><span class="token dom variable">localStorage</span><span class="token punctuation">.</span><span class="token method function property-access">getItem</span><span class="token punctuation">(</span><span class="token string">&#x27;checklistItem&#x27;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token punctuation">)</span>
+
+    <span class="token comment">// after a checklistItem is added or changed (see dependency array), set the variable &#x27;checklistItem&#x27; as a key with its value being the stringified &#x27;checklistItem&#x27;</span>
+    <span class="token maybe-class-name">React</span><span class="token punctuation">.</span><span class="token method function property-access">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token dom variable">localStorage</span><span class="token punctuation">.</span><span class="token method function property-access">setItem</span><span class="token punctuation">(</span><span class="token string">&#x27;checklistItem&#x27;</span><span class="token punctuation">,</span> <span class="token known-class-name class-name">JSON</span><span class="token punctuation">.</span><span class="token method function property-access">stringify</span><span class="token punctuation">(</span>checklistItem<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>checklistItem<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2>Special Thanks</h2>
+<ul><li><p>Scrimba for their <a href="https://scrimba.com/learn/learnreact">awesome React course
+</a></p></li></ul>]]></content:encoded>
+            <author>spencer@planetaria.tech (Spencer Sharp)</author>
+        </item>
+    </channel>
+</rss>

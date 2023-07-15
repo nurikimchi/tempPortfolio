@@ -1,0 +1,36 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const meta = {
+  author: 'Nuri Kim',
+  date: '2022-07-07',
+  title: 'Decrease Loading Time in React with Lazy State Initialization',
+  //   description: ''
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+## The Issue
+
+In React, every time state changes, its parent function component is rerun. This can greatly increase loading times--especially if large memory consuming processes are being rerun (e.g. localStorage).
+
+```js
+export default App () {
+    // if 'checklistItem' state is changed, the parent functional component: 'App' will rerun--including heavy memory processes such as 'localStorage'
+    const [checklistItem, setChecklistItems] = React.useState(
+        JSON.parse(localStorage.getItem('checklistItem')) || []
+    )
+}
+```
+
+## The Fix
+
+The fix is simple: make state a function. By doing so, we successfully make state run once instead on every state change and initialize state to be lazy--hence lazy state initialization.
+
+```js
+export default App() {
+    // By making 'checklistItem' state an arrow function, we successfully implement lazy state initialization!
+    const [checklistItem, setChecklistItems] = React.useState(
+        () => JSON.parse(localStorage.getItem('checklistItem')) || []
+    )
+}
+```
