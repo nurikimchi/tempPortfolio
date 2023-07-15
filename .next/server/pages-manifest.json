@@ -1,16 +1,6 @@
 {
   "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
-  "/about": "pages/about.html",
-  "/freelance": "pages/freelance.html",
-  "/projects": "pages/projects.html",
-  "/speaking": "pages/speaking.html",
-  "/thank-you": "pages/thank-you.html",
   "/_error": "pages/_error.js",
-  "/articles": "pages/articles.js",
-  "/uses": "pages/uses.html",
-  "/articles/localStorage-React": "pages/articles/localStorage-React.html",
-  "/articles/lazyState-React": "pages/articles/lazyState-React.html",
-  "/": "pages/index.js",
-  "/404": "pages/404.html"
+  "/_document": "pages/_document.js",
+  "/": "pages/index.js"
 }
