@@ -311,10 +311,12 @@ export default function Home({ articles }) {
         <meta
           name="description"
           content="Hi, I'm Nuri, a rising junior studying Computer Science at Franklin
-            High School's STEM program in Elk Grove, California. I'm the tech
-            lead for the program's official website, managing and guiding a
-            group of developers to build an ecommerce store that opens merch
-            orders to the student body. We are set to deploy this August."
+            High School's STEM program in Elk Grove, California. I am the club president
+            of Franklin's Fullstack Development Club. This year, we are working on an exclusive
+            project offered by the City of Elk Grove to create a 3D visualization of the
+            zoo's design models. As president I lead the project and members
+            specialized in CAD and programming. We are set to deploy the spring of 2024.
+            See our work at elkgrovezoo.franklinsoftwaredevelopers.com"
         />
       </Head>
       <Container className="mt-9">
@@ -324,10 +326,12 @@ export default function Home({ articles }) {
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             Hi, I'm Nuri, a rising junior studying Computer Science at Franklin
-            High School's STEM program in Elk Grove, California. I'm the tech
-            lead for the program's official website, managing and guiding a
-            group of developers to build an ecommerce store that opens merch
-            orders to the student body. We are set to deploy this August.
+            High School's STEM program in Elk Grove, California. I am the club president
+            of Franklin's Fullstack Development Club. This year, we are working on an exclusive
+            project offered by the City of Elk Grove to create a 3D visualization of an
+            upcomin zoo using its design models. As president I lead the project and members
+            specialized in CAD and programming. We are set to deploy the spring of 2024.
+            See our work at elkgrovezoo.franklinsoftwaredevelopers.com.
           </p>
           <div className="mt-6 flex gap-6">
             {/* <SocialLink
