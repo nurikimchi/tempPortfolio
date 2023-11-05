@@ -180,10 +180,13 @@ function Resume() {
     },
     {
       company: 'City of Elk Grove',
-      title: 'Civic Summer Intern',
+      title: 'Lead for New Zoo Visualization',
       logo: logoEG,
       start: '2023',
-      end: '2023',
+      end: {
+        label: 'Present',
+        dateTime: new Date().getFullYear(),
+      },
     },
   ]
 
@@ -325,11 +328,11 @@ export default function Home({ articles }) {
             Software developer, student, and leader.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            Hi, I'm Nuri, a rising junior studying Computer Science at Franklin
+            Hi, I'm Nuri, a junior studying Computer Science at Franklin
             High School's STEM program in Elk Grove, California. I am the club president
             of Franklin's Fullstack Development Club. This year, we are working on an exclusive
             project offered by the City of Elk Grove to create a 3D visualization of an
-            upcomin zoo using its design models. As president I lead the project and members
+            upcomin zoo using its design models. As president I lead the project and its 11 members
             specialized in CAD and programming. We are set to deploy the spring of 2024.
             See our work at elkgrovezoo.franklinsoftwaredevelopers.com.
           </p>
