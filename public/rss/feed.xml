@@ -4,7 +4,7 @@
         <title>Spencer Sharp</title>
         <link>undefined</link>
         <description>Your blog description</description>
-        <lastBuildDate>Sat, 15 Jul 2023 09:04:30 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 23 Feb 2024 02:50:53 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -12,7 +12,7 @@
             <url>undefined/favicon.ico</url>
             <link>undefined</link>
         </image>
-        <copyright>All rights reserved 2023</copyright>
+        <copyright>All rights reserved 2024</copyright>
         <item>
             <title><![CDATA[Decrease Loading Time in React with Lazy State Initialization]]></title>
             <link>undefined/articles/lazyState-React</link>

@@ -59,6 +59,39 @@ export const GCData = {
 export const chartData = [
   pointConstructor,
   [
+    new Date('October 16, 2023'),
+    75,
+    createCustomHTMLTooltip(
+      GCData.Wildhawk.logoURL,
+      GCData.Wildhawk.name,
+      new Date('October 16, 2023').toLocaleDateString(),
+      75,
+      'PR!'
+    )
+  ],
+  [
+    new Date('October 2, 2023'),
+    79,
+    createCustomHTMLTooltip(
+      GCData.BartleyCavanaugh.logoURL,
+      GCData.BartleyCavanaugh.name,
+      new Date('October 2, 2023').toLocaleDateString(),
+      79,
+      ''
+    )
+  ],
+  [
+    new Date('August 21, 2023'),
+    82,
+    createCustomHTMLTooltip(
+      GCData.Wildhawk.logoURL,
+      GCData.Wildhawk.name,
+      new Date('August 21, 2023').toLocaleDateString(),
+      82,
+      ''
+    )
+  ],
+  [
     new Date('June 20, 2023'),
     90,
     createCustomHTMLTooltip(
