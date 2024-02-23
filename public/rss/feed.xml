@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
-        <title>Spencer Sharp</title>
+        <title>Nuri Kim</title>
         <link>undefined</link>
         <description>Your blog description</description>
         <lastBuildDate>Fri, 23 Feb 2024 02:50:53 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
-            <title>Spencer Sharp</title>
+            <title>Nuri Kim</title>
             <url>undefined/favicon.ico</url>
             <link>undefined</link>
         </image>
@@ -36,7 +36,7 @@
     <span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 </code></pre>]]></content:encoded>
-            <author>spencer@planetaria.tech (Spencer Sharp)</author>
+            <author>nurikimchi@gmail.com (Nuri Kim)</author>
         </item>
         <item>
             <title><![CDATA[Save and Retrieve Data After A Closed Window In React With localStorage]]></title>
@@ -102,7 +102,7 @@ Example: In our checklist app, we want to implement a feature where a user&#x27;
 <h2>Special Thanks</h2>
 <ul><li><p>Scrimba for their <a href="https://scrimba.com/learn/learnreact">awesome React course
 </a></p></li></ul>]]></content:encoded>
-            <author>spencer@planetaria.tech (Spencer Sharp)</author>
+            <author>nurikimchi@gmail.com (Nuri Kim)</author>
         </item>
     </channel>
 </rss>

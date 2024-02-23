@@ -42,7 +42,7 @@ export const GCData = {
     name: 'Bartley Cavanaugh',
   },
   Hiddenbrooke: {
-    logoURL: 'https://www.hiddenbrookegolf.com/images/logo.png',
+    logoURL: 'https://www.hiddenbrookegolf.com/wp-content/uploads/sites/8918/2023/06/logo.png',
     name: 'Hiddenbrooke',
   },
   TheRidge: {

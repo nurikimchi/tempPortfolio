@@ -13,6 +13,8 @@ import logoFSD from 'public/images/logos/fsd-logo.svg'
 import logoCS4Girls from 'public/images/logos/cs4girls-logo.svg'
 import logoAMC from 'public/images/logos/amc-logo.png'
 import logoEG from 'public/images/logos/eg-logo.jpeg'
+import logoYOC from 'public/images/logos/yoc-logo.jpeg'
+
 import image1 from 'public/images/photos/image-1.jpg'
 import image2 from 'public/images/photos/image-2.jpg'
 import image3 from 'public/images/photos/image-3.jpg'
@@ -139,9 +141,9 @@ function Newsletter() {
 function Resume() {
   let resume = [
     {
-      company: 'Franklin High School STEAM',
-      title: 'Tech Lead',
-      logo: logoSTEAM,
+      company: 'Youth on Course',
+      title: 'Mobile Developer',
+      logo: logoYOC,
       start: '2023',
       end: {
         label: 'Present',
@@ -180,7 +182,7 @@ function Resume() {
     },
     {
       company: 'City of Elk Grove',
-      title: 'Lead for New Zoo Visualization',
+      title: 'Contractor',
       logo: logoEG,
       start: '2023',
       end: {
@@ -240,7 +242,7 @@ function Resume() {
         variant="secondary"
         className="group mt-6 w-full"
       >
-        See Résumé
+        See Resume
         {/* <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" /> */}
       </Button>
     </div>

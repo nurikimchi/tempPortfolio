@@ -107,7 +107,7 @@ export default function About() {
                 <u>
                   <a href="/">here</a>
                 </u>{' '}
-                to see my résumé and past roles.
+                to see my resume and past roles.
               </p>
               <p>Thank you so much for reading and happy coding!</p>
             </div>

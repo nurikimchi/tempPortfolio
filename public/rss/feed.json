@@ -1,11 +1,11 @@
 {
     "version": "https://jsonfeed.org/version/1",
-    "title": "Spencer Sharp",
+    "title": "Nuri Kim",
     "feed_url": "undefined/rss/feed.json",
     "description": "Your blog description",
     "icon": "undefined/favicon.ico",
     "author": {
-        "name": "Spencer Sharp"
+        "name": "Nuri Kim"
     },
     "items": [
         {
@@ -15,7 +15,7 @@
             "title": "Decrease Loading Time in React with Lazy State Initialization",
             "date_modified": "2022-07-07T00:00:00.000Z",
             "author": {
-                "name": "Spencer Sharp"
+                "name": "Nuri Kim"
             }
         },
         {
@@ -25,7 +25,7 @@
             "title": "Save and Retrieve Data After A Closed Window In React With localStorage",
             "date_modified": "2022-07-06T00:00:00.000Z",
             "author": {
-                "name": "Spencer Sharp"
+                "name": "Nuri Kim"
             }
         }
     ]
