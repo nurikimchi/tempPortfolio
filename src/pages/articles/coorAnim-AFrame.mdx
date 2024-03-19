@@ -1,0 +1,129 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const meta = {
+  author: 'Nuri Kim',
+  date: '2024-03-18',
+  title: 'Coordinating gLTF motion with A-Frame animations',
+    description: 
+    'In A-Frame, developers can easily animate an entity\'s rotation and position. However, there are no built-in solutions for adding clip-animations. In this article, I propose a solution to coordinate a CAD model\'s clip animations with its A-Frame counterpart.'
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+> “Great events make me quiet and calm; it is only trifles that irritate my nerves.”
+
+## Table of Contents
+1. The Problem
+2. Positional, rotational, or scaling animations of A-Frame
+3. gLTF model movement
+4. Discovered solution ([jump](#discovered-solution))
+5. Concluding suggestions
+
+## The Problem
+If you tried searching for A-Frame animations on the web, you’d probably see articles and documentation exclusively discussing built-in animation properties, gLTF model animations, and a library called [aframe-animation-timeline-component](https://www.npmjs.com/package/aframe-animation-timeline-component) aiming to outline and execute sequences of grouped and individual animations.
+
+You’re probably unable to find a fleshed-out solution connecting built-in rotation, position, scaling, or visibility animations of an ```<a-entity>``` to a gLTF model’s clip animations. So how do you connect and run them together, simultaneously?
+
+In this article, I’ll be showing how—with some custom JavaScript functions—you can have any gLTF model coordinate its clip animations with its positional, rotational, or size-changing animation attributes provided by A-Frame.
+
+## Positional, rotational, or scaling animations of A-Frame
+Let’s establish some common ground, A-Frame has built-in values for its ```animation``` attribute. Examine each code snippet if you’re unsure changing an ```<a-entity>```’s positional or rotational values of its animation attribute.
+
+These just cover position and rotation component values but similar structure applies for scale. Visibility’s ```to``` and ```from``` sister attributes are boolean values.
+
+### Position:
+```html
+<a-box position="-1 1.6 -5" animation="property: position; to: 1 8 -10; dur: 2000; easing: linear; loop: true" color="tomato"></a-box>
+```
+
+### Rotation:
+```html
+<a-box rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000” color="blue"></a-box>
+```
+
+*Code snippets courtesy of A-Frame's [documentation](https://aframe.io/docs/1.5.0/components/animation.html).*
+
+## gLTF model movement
+WebVR developers can import gLTF models from third-party websites like [Sketchfab](https://sketchfab.com) into their visualizations.
+
+For few free and many paid models, gLTF models can have several clip animations. Search your third-party CAD model provider for a list.
+
+Once you initially downloaded your model as a gLTF and [converted](https://products.groupdocs.app/conversion/gltf-to-obj) into an usable .glb file, place it in your project.
+
+Once your server shows a static entity, define its attribute as ```animation-mixer=“clip: {}”```.
+
+```html
+<a-entity
+    id="..."
+    gltf-model="./assets/adultGiraffeTextured.glb"
+    position="..."
+    rotation="..."
+    scale="..."
+    animation-mixer="clip: Rest">
+</a-entity>
+```
+Awesome, so we now understand how to implement built-in A-Frame animations and gLTF clip animations separately! Now, to synchronizing them together!
+
+<h2 id="discovered-solution">Discovered solution</h2>
+Several animation attributes, denoted by ```animation```, can simultaneously be assigned to a parent entity. Simply append two underscores and a string after: ```animation__{appear}```. 
+
+```html
+ <a-entity
+  id="..."
+  gltf-model="./assets/adultGiraffeTextured.glb"
+  position="..."
+  rotation="..." 
+  scale="..."
+  animation__1_0="
+      property: position;
+      from: ...;
+      to: ...;
+      dur: ...;
+  "
+  animation__1a="
+      startEvents: animationcomplete__1_0, animationcomplete__6a;
+      property: ...;
+      from: ...;
+      to: ...;
+      autoplay: ...;
+      dur: ...;
+  "
+  animation__2a="
+      startEvents: animationcomplete__1_0, animationcomplete__6a;
+      property: position;
+      from: ...;
+      to: ...;
+      autoplay: ...;
+      dur: ...;
+  ">
+</a-entity>
+```
+Make ```a-entity```’s usable JavaScript objects, select and declare it as a variable. Ensure all the following JavaScript functions are wrapped in a ```<script>``` tag and placed **after** your A-Frame.
+```js
+var giraffeA1 = document.querySelector('#giraffe-A1')
+```
+
+Combine this with A-Frame’s built-in ```animationbegin``` event and JavaScript functions can detect when one or several animations begin. We will be leveraging this default, emitted ```animationbegin``` event as our switch cases.
+
+```js
+giraffeA1.addEventListener('animationbegin', animationCorresponder)
+```
+
+Console log ```event.detail.name``` in a separate event listener with the same first (```type```) argument. Open the console and see that each animation name is logs with its respective start.
+```js
+giraffeA1.addEventListener('animationbegin', function (e) {
+    console.log(e.detail.name);
+})
+```
+
+<details>
+  <summary>Why does ```animCorr``` not explicitly pass the ```event``` argument?</summary>
+   > ```animCorr``` is automatically passed and supplemented with the ```event``` object by JavaScript’s built-in event system.
+</details>
+
+The ```addEventListener``` detects ```animation__1``` emitted the string “animationbegin” and subsequently calls the ```animCorr``` function. The ```animCorr``` function traces the emitted string back to its original signaler—```animation__1```—and sets the entity’s ```’animation-mixer’, {‘clip’: ‘Drink’}```. 
+
+Thus, you’ll see the model almost simultaneously move and perform its clip animation. 
+
+## Concluding suggestions
+Instead of working with strings of HTML elements, feel free to programmatically declare A-Frame entities via ```AFRAME.registerComponent```; they offer more flexibility and better scalability.
