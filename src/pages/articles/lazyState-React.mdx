@@ -4,7 +4,7 @@ export const meta = {
   author: 'Nuri Kim',
   date: '2022-07-07',
   title: 'Decrease Loading Time in React with Lazy State Initialization',
-  //   description: ''
+    description: 'In React, every time state changes, its parent function component is rerun. This can greatly increase loading times--especially if large memory consuming processes are being rerun (e.g. localStorage).'
 }
 
 export default (props) => <ArticleLayout meta={meta} {...props} />
